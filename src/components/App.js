@@ -14,6 +14,21 @@ class App extends Component {
         text : sampleText
     };
 
+// LIFE CYCLE
+
+    componentWillMount() { // se lance juste avant que le render() soit lancé
+        const localStorageText = localStorage.getItem('text');
+        if (localStorageText) {
+            this.setState({ text : localStorageText });
+        };
+    };
+
+    componentWillUpdate(nextProps, nextState){
+        localStorage.setItem('text', nextState.text)
+        // localStorage propriété HtML5 permet de stocker des données sur le navigateur
+        // méthode d'accès : setItem(clé,valeur) : stocke une paire clé/valeur
+    };
+
 // FUNCTIONS PERSOS
 
     editText = (event) => {
